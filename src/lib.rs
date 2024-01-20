@@ -1,10 +1,11 @@
 mod logger;
 
-pub mod log;
 mod mobile;
 
 use std::sync::Once;
 use lazy_static::lazy_static;
+
+pub use log::*;
 
 lazy_static! {
     // 配置日志
