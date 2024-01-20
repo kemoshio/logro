@@ -1,14 +1,24 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+mod logger;
+
+pub mod log;
+mod mobile;
+
+use std::sync::Once;
+use lazy_static::lazy_static;
+
+lazy_static! {
+    // 配置日志
+    pub static ref LOG_ONCE: Once = Once::new();
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub fn enable(level: i32) {
+    LOG_ONCE.call_once(move || {
+        logger::setup(level).unwrap();
+    });
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[test]
+fn test_logger() {
+    enable(3);
+    log::info!("abc");
 }

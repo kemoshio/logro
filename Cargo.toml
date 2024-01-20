@@ -2,5 +2,20 @@
 name = "logro"
 version = "1.0.0"
 edition = "2021"
+build = "build.rs"
 
 [dependencies]
+# Common
+bytes = "1"
+anyhow = "1.0"
+lazy_static = "1.4.0"
+# Logging
+log = { version = "0.4", features = ["std"] }
+fern = { version = "0.6", features = ["colored"] }
+chrono = "0.4"
+# mobile
+[target.'cfg(any(target_os = "ios", target_os = "macos", target_os = "android"))'.dependencies]
+memchr = { version = "2" }
+
+[build-dependencies]
+bindgen = "0.59"
