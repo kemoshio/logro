@@ -56,7 +56,7 @@ pub fn setup_logger(level: log::LevelFilter) -> Result<()> {
                 let target_last = vec[vec.len() - 1];
                 let target_line = format!("{}:{}", target_last, record.line().unwrap());
                 out.finish(format_args!(
-                    "[R] {level:>level_size$} {{date} target:<target_size$} --- {message}",
+                    "{date} [R] {level:>level_size$} target:<target_size$} --- {message}",
                     date = chrono::Local::now().format("%Y-%m-%d %H:%M:%S%.3f"),
                     level = record.level(),
                     level_size = 5,
@@ -80,7 +80,7 @@ pub fn setup_logger(level: log::LevelFilter) -> Result<()> {
             .format(|out, message, record| {
                 let vec: Vec<&str> = record.target().split("::").collect();
                 let target_last = vec[vec.len() - 1];
-                let target_line = format!("{}:{}", target_last, record.line().unwrap());
+                let target_line = format!("{}{}:{}", vec.len(), target_last, record.line().unwrap());
                 let lev_color = match record.level() {
                     log::Level::Debug => Color::White,
                     log::Level::Trace => Color::White,
