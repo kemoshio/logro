@@ -100,7 +100,7 @@ pub fn setup_logger(level: log::LevelFilter) -> Result<()> {
                     level_size = 5,
                     target_color = Color::Cyan.v(),
                     target = target_line,
-                    target_size = 24,
+                    target_size = 14,
                     message = message,
                 ))
             })
