@@ -60,7 +60,7 @@ pub fn setup_logger(level: log::LevelFilter) -> Result<()> {
                     target_line =format!("{}/{}", path, target_line)
                 }
                 out.finish(format_args!(
-                    "{date} [R] {level:>level_size$} target:<target_size$} --- {message}",
+                    "{date} [R] {level:>level_size$} {target:<target_size$} --- {message}",
                     date = chrono::Local::now().format("%Y-%m-%d %H:%M:%S%.3f"),
                     level = record.level(),
                     level_size = 5,
