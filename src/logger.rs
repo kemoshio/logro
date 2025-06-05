@@ -83,7 +83,7 @@ pub fn setup_logger(level: log::LevelFilter) -> Result<()> {
                 let mut target_line = format!("{}:{}", target_last, record.line().unwrap());
                 if vec.len() > 1 {
                     let path = vec[vec.len() - 2];
-                    target_line =format!("{}:{}", path, target_last)
+                    target_line =format!("{}/{}", path, target_line)
                 }
                 let lev_color = match record.level() {
                     log::Level::Debug => Color::White,
